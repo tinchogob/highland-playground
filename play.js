@@ -15,9 +15,7 @@ var getSite = _.wrapCallback(function (site, cb) {
 });
 
 function play(cb) {
-	var res = _(sites).map(getSite).parallel(100).map(JSON.parse).pluck('args');
-
-	res.toArray(function(xs) {
+	var res = _(sites).map(getSite).parallel(100).map(JSON.parse).pluck('args').toArray(function(xs) {
 		cb(undefined, xs);
 	});
 };
